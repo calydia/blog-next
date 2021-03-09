@@ -5,7 +5,7 @@ export default function BlogPage({ post }) {
 
   return (
     <div>
-      <h1>{ post.title }</h1>
+      <h1 id="skip-target">{ post.title }</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
     </div>
   );

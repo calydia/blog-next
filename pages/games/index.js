@@ -73,8 +73,8 @@ export default function BlogPage({ page, newest, listing }) {
 export async function getStaticProps() {
   const page = await client.query({
     query: gql`
-      query GetBlogA11yListingPage {
-        page(id: 41) {
+      query GetBlogGamesListingPage {
+        page(id: 43) {
           title
           content
         }
@@ -84,8 +84,8 @@ export async function getStaticProps() {
 
   const newest = await client.query({
     query: gql`
-      query GetNewestA11yArticle {
-        articles(limit: 1, category: 5) {
+      query GetNewestGamesArticle {
+        articles(limit: 1, category: 6) {
           items {
             title
             slug
@@ -100,8 +100,8 @@ export async function getStaticProps() {
 
   const listing = await client.query({
     query: gql`
-      query GetOtherA11yArticles {
-        articles(limit: 100, category: 5, offset: 1) {
+      query GetOtherGamesArticles {
+        articles(limit: 100, category: 6, offset: 1) {
           items {
             title
             slug

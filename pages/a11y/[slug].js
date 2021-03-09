@@ -7,6 +7,7 @@ export default function BlogPage({ post }) {
     <div>
       <h1>{ post.title }</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+      <div dangerouslySetInnerHTML={{ __html: post.imageCredits }}></div>
     </div>
   );
 }
