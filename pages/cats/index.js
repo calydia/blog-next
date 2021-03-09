@@ -2,20 +2,24 @@ import { gql } from '@apollo/client';
 import { client } from '../../lib/apollo';
 import Image from 'next/image';
 import dayjs from 'dayjs';
+import BlogListing from '../../components/styles/BlogListing';
+import BlogCategoryContent from '../../components/styles/BlogCategoryContent';
+
 
 export default function BlogPage({ page, newest, listing }) {
   return (
     <div>
-      <h1 id="skip-target">{ page.title }</h1>
-      <div dangerouslySetInnerHTML={{ __html: page.content }}></div>
-
-      <div className="blog-listing">
+      <BlogCategoryContent>
+        <h1 id="skip-target">{ page.title }</h1>
+        <div dangerouslySetInnerHTML={{ __html: page.content }}></div>
+      </BlogCategoryContent>
+      <BlogListing>
         <ul className="blog-category-articles">
 
         {newest.items.map((node, index) => {
               return (
                 <li key={`list-item${index}`} className="blog-list-item newest-blog">
-                  <a key={index} className="post" href="/" aria-labelledby={`first-blog-title${index}`}>
+                  <a key={index} className="post" href={`/cats/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
                     <Image
                       src={node.listingImage}
                       alt=""
@@ -41,7 +45,7 @@ export default function BlogPage({ page, newest, listing }) {
         {listing.items.map((node, index) => {
               return (
                 <li key={`list-item${index}`} className="blog-list-item">
-                  <a key={index} className="post" href="/" aria-labelledby={`blog-title${index}`}>
+                  <a key={index} className="post" href={`/cats/${node.slug}`} aria-labelledby={`blog-title${index}`}>
                     <Image
                       src={node.listingImage}
                       alt=""
@@ -64,7 +68,7 @@ export default function BlogPage({ page, newest, listing }) {
               );
             })}
         </ul>
-      </div>
+      </BlogListing>
 
     </div>
   );

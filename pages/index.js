@@ -1,19 +1,18 @@
 import { gql } from '@apollo/client';
 import { client } from '../lib/apollo';
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 export default function Home({ page }) {
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Welcome to my blog! | Blog - Sanna Mäkinen</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main>
+        <h1 id="skip-target">
           { page.page.title }
         </h1>
         <div className="front-category-cats"><h2>Newest from Cats</h2></div>
@@ -22,10 +21,6 @@ export default function Home({ page }) {
         <div className="front-category-tech"><h2>Newest from Tech</h2></div>
         <div className="front-category-a11y"><h2>Newest from Accessibility</h2></div>
       </main>
-
-      <footer className={styles.footer}>
-
-      </footer>
     </div>
   )
 }

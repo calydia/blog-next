@@ -1,9 +1,16 @@
 html,
 body {
+  font-size: 16px;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.3rem;
 }
 
 a {
@@ -13,4 +20,91 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+@-webkit-keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  width: 1px;
+  height: 1px;
+  top: auto;
+}
+.skip-link:focus {
+  display: inline-block;
+  height: auto;
+  left: 0;
+  width: auto;
+  position: absolute;
+  margin: auto;
+  padding: 0.7em;
+  top: 2em;
+}
+
+body.dark-mode {
+  background: #010017;
+  background: linear-gradient(270deg, #010017, #01000f);
+  background-size: 400% 400%;
+  color: white;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    -webkit-animation: BackgroundAnimation 30s ease infinite;
+    -moz-animation: BackgroundAnimation 30s ease infinite;
+    animation: BackgroundAnimation 30s ease infinite;
+  }
+
+}
+body.dark-mode .skip-link:focus { 
+  background: black;
+  color: white;
+}
+
+
+body.light-mode {
+  background: #d8eaf0;
+  background: linear-gradient(270deg, #8bcbe1, #d8eaf0);
+  background-size: 400% 400%;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    -webkit-animation: BackgroundAnimation 30s ease infinite;
+    -moz-animation: BackgroundAnimation 30s ease infinite;
+    animation: BackgroundAnimation 30s ease infinite;
+  }
+}
+body.light-mode .skip-link:focus { 
+  background: white;
+  color: #54007b;
 }

@@ -1,50 +1,115 @@
 import Link from 'next/link';
+import styled from 'styled-components';
+import ActiveLink from './ActiveLink'
 
 const Header = () => {
 
+  const HeaderStyles = styled.header`
+    text-align: center;
+  `;
+
+  const LogoLink = styled.a`
+    color: ${({ theme }) => theme.mainLink};
+    display: inline-block;
+    text-align: center;
+    &:hover {
+      color: ${({ theme }) => theme.linkColor};
+      cursor: pointer;
+      text-decoration: none;
+    }
+    &:focus {
+      color: ${({ theme }) => theme.linkColor};
+      outline: 5px dashed ${({ theme }) => theme.mainLink};
+      outline-offset: 15px;
+    }
+
+    .blog-me {
+      display: block;
+      font-family: 'Rock Salt', cursive;
+      font-size: 1.875rem;
+      line-height: 1;
+    }
+    .blog-name {
+      display: block;
+      font-family: 'Rock Salt', cursive;
+      font-size: 1.125rem;
+      line-height: 1;
+      margin-top: 0.5em;
+    }
+  `;
+
+  const NavigationStyles = styled.nav`
+    ul {
+      display: flex;
+      flex-flow: row wrap;
+      list-style: none;
+      justify-content: center;
+      margin-bottom: 0;
+      margin-top: 2em;
+      padding: 0;
+    }
+    li {
+      margin: 0.8em;
+    }
+    a {
+      color: ${({ theme }) => theme.mainLink};
+      font-size: 1.3rem;
+      padding: 0.2em;
+    }
+    a.active {
+      color: ${({ theme }) => theme.linkColor};
+      text-decoration: underline;
+    }
+    a:hover {
+      color: ${({ theme }) => theme.linkColor};
+      text-decoration: underline;
+    }
+    a:focus {
+      color: ${({ theme }) => theme.linkColor};
+      outline: 5px dashed ${({ theme }) => theme.mainLink};
+      outline-offset: 5px;
+      text-decoration: underline;
+    }
+  `;
+
   return (
-    <header>
-      <Link href="#skip-target">
-        <a id="skip" className="skip-link">
-          Skip to content
-        </a>
+    <HeaderStyles>
+      <Link className="home-main" href="/" passHref>
+        <LogoLink>
+          <span className="blog-me">Sanna Mäkinen</span>
+          <span className="blog-name">Blog</span>
+        </LogoLink>
       </Link>
-      <Link className="home-main" href="/">
-        <a>
-          <span className="name">Sanna Mäkinen</span>
-          <span className="blog">Blog</span>
-        </a>
-      </Link>
-      <nav aria-label="main-navigation">
+      <NavigationStyles aria-label="main-navigation">
         <ul>
           <li>
-            <Link href="/cats">
+            <ActiveLink activeClassName="active" href="/cats">
               <a>Cats</a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/life">
+            <ActiveLink activeClassName="active" href="/life">
               <a>Life</a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/games">
+            <ActiveLink activeClassName="active" href="/games">
               <a>Games</a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/tech">
+            <ActiveLink activeClassName="active" href="/tech">
               <a>Tech</a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/a11y">
+            <ActiveLink activeClassName="active" href="/a11y">
               <a>Accessibility</a>
-            </Link>
+            </ActiveLink>
           </li>
         </ul>
-      </nav>
-    </header>
+      </NavigationStyles>
+    </HeaderStyles>
   );
 }
 
