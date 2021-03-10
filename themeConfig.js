@@ -8,10 +8,14 @@ export const lightTheme = {
   gradient: 'linear-gradient(to right, #46037e 0%, RoyalBlue 50%, #46037e 100%)',
   listingBg: '#BBC9F7',
   footerBg: '#BBC9F7',
-  footerBorder: 'black',
+  footerBorder: '#54007b',
   footerLogo: 'url(/images/sm-logo-darkblue.png)',
   footerLink: '#033573',
-  footerLinkHover: '#54007b'
+  footerLinkHover: '#54007b',
+  writerBg: '#BBC9F7',
+  postText: '#333333',
+  postLinkHover: '#54007b',
+  postLink: '#033573',
 }
 
 export const darkTheme = {
@@ -22,10 +26,14 @@ export const darkTheme = {
   gradient: 'linear-gradient(to right, #46037e 0%, RoyalBlue 50%, #46037e 100%)',
   listingBg: '#18032B',
   footerBg: '#18032B',
-  footerBorder: 'white',
+  footerBorder: 'wheat',
   footerLogo: 'url(/images/sm-logo-lightblue.png)',
   footerLink: '#ade5f8',
-  footerLinkHover: 'wheat'
+  footerLinkHover: 'wheat',
+  writerBg: '#18032B',
+  postText: '#CFCFCF',
+  postLink: '#ade5f8',
+  postLinkHover: 'wheat',
 }
 
 export const GlobalStyles = createGlobalStyle`

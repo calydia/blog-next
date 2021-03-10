@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const BlogListing = styled.div`
+const FrontBlogListing = styled.div`
   margin: 0 auto;
   max-width: 80em;
   padding: 2em 2em;
@@ -43,6 +43,15 @@ const BlogListing = styled.div`
     display: block;
     padding-bottom: 1em;
   }
+  li {
+    align-items: stretch;
+    border: 3px solid;
+    border-image: ${({ theme }) => theme.gradient};
+    border-image-slice: 1;
+    display: flex;
+    padding: 0.5em;
+    text-align: center;
+  }
   .newest-blog {
     @media only screen and (min-width: 768px) {
       grid-column-start: 1;
@@ -83,16 +92,6 @@ const BlogListing = styled.div`
       }
     }
   }
-  li {
-    align-items: stretch;
-    border: 3px solid;
-    border-image: ${({ theme }) => theme.gradient};
-    border-image-slice: 1;
-    display: flex;
-    padding: 0.5em;
-    text-align: center;
-  }
-
   a {
     display: block;
     width: 100%;
@@ -110,4 +109,4 @@ const BlogListing = styled.div`
   }
 `;
 
-export default BlogListing;
+export default FrontBlogListing;

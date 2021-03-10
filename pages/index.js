@@ -1,25 +1,93 @@
 import { gql } from '@apollo/client';
 import { client } from '../lib/apollo';
-import Head from 'next/head'
+import Head from 'next/head';
+import dayjs from 'dayjs';
+import Image from 'next/image';
+import FrontBlogListing from '../components/styles/FrontBlogListing';
+import styled from 'styled-components';
 
-export default function Home({ page }) {
+export default function Home({ page, newest, listing }) {
+
+  const FrontHeading = styled.h1`
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-top: 1.5em;
+    text-align: center;
+    @media only screen and (min-width: 940px) {
+      font-size: 4rem;
+      line-height: 1.2;
+      margin-top: 1.2em;
+    }
+  `;
 
   return (
     <div>
       <Head>
         <title>Welcome to my blog! | Blog - Sanna Mäkinen</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 id="skip-target">
+        <FrontHeading id="skip-target">
           { page.page.title }
-        </h1>
-        <div className="front-category-cats"><h2>Newest from Cats</h2></div>
-        <div className="front-category-life"><h2>Newest from Life</h2></div>
-        <div className="front-category-games"><h2>Newest from Games</h2></div>
-        <div className="front-category-tech"><h2>Newest from Tech</h2></div>
-        <div className="front-category-a11y"><h2>Newest from Accessibility</h2></div>
+        </FrontHeading>
+        <div className="front-category-cats">
+          <FrontBlogListing>
+          <ul className="blog-category-articles">
+
+{newest.items.map((node, index) => {
+      return (
+        <li key={`list-item${index}`} className="blog-list-item newest-blog">
+          <a key={index} className="post" href={`/a11y/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
+            <Image
+              src={node.listingImage}
+              alt=""
+              width={1025}
+              height={600}
+              layout="responsive"
+            />
+            <div className="post-content">
+              <span id={`first-blog-title${index}`} className="blog-listing-title">
+                {node.title}
+              </span>
+              <span className="blog-info">
+                {dayjs(node.date)
+                  .format(`DD.MM.YYYY`)}{' '}
+                | {node.category}
+              </span>
+            </div>
+          </a>
+        </li>
+      );
+    })}
+
+{listing.items.map((node, index) => {
+      return (
+        <li key={`list-item${index}`} className="blog-list-item">
+          <a key={index} className="post" href={`/a11y/${node.slug}`} aria-labelledby={`blog-title${index}`}>
+            <Image
+              src={node.listingImage}
+              alt=""
+              width={1025}
+              height={600}
+              layout="responsive"
+            />
+            <div className="post-content">
+              <span id={`blog-title${index}`} className="blog-listing-title">
+                {node.title}
+              </span>
+              <span className="blog-info">
+                {dayjs(node.date)
+                  .format(`DD.MM.YYYY`)}{' '}
+                | {node.category}
+              </span>
+            </div>
+          </a>
+        </li>
+      );
+    })}
+</ul>
+        </FrontBlogListing>
+        </div>
       </main>
     </div>
   )
@@ -36,9 +104,43 @@ export async function getStaticProps() {
     `
   });
 
+  const newest = await client.query({
+    query: gql`
+      query GetNewestArticle {
+        articles(limit: 1) {
+          items {
+            title
+            slug
+            date
+            listingImage
+            category
+          }
+        }
+      }
+    `
+  });
+
+  const listing = await client.query({
+    query: gql`
+      query GetOtherArticles {
+        articles(limit: 100, offset: 1) {
+          items {
+            title
+            slug
+            date
+            listingImage
+            category
+          }
+        }
+      }
+    `
+  });
+
   return {
     props: {
-      page: result.data
+      page: result.data,
+      newest: newest.data.articles,
+      listing: listing.data.articles
     }
   };
 }
