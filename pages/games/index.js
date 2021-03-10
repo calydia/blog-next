@@ -8,7 +8,7 @@ import BlogCategoryContent from '../../components/styles/BlogCategoryContent';
 
 export default function BlogPage({ page, newest, listing }) {
   return (
-    <div>
+    <main>
       <Head>
         <title>Games | Blog - Sanna Mäkinen</title>
         <meta name="Description" content={page.metaDescription} />
@@ -86,8 +86,7 @@ export default function BlogPage({ page, newest, listing }) {
           }
         </ul>
       </BlogListing>
-
-    </div>
+    </main>
   );
 }
 

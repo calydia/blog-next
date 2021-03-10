@@ -10,7 +10,7 @@ import BlogWriterContent from '../../components/styles/BlogWriterContent';
 export default function BlogPage({ post }) {
 
   return (
-    <div>
+    <main>
       <Head>
         <title>{post.title} | Blog - Sanna Mäkinen</title>
         <meta name="Description" content={post.metaDescription} />
@@ -63,7 +63,7 @@ export default function BlogPage({ post }) {
           </article>
         </BlogWriterContent>
       </BlogWrapper>
-    </div>
+    </main>
   );
 }
 

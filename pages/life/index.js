@@ -6,10 +6,9 @@ import dayjs from 'dayjs';
 import BlogListing from '../../components/styles/BlogListing';
 import BlogCategoryContent from '../../components/styles/BlogCategoryContent';
 
-
 export default function BlogPage({ page, newest, listing }) {
   return (
-    <div>
+    <main>
       <Head>
         <title>Life | Blog - Sanna Mäkinen</title>
         <meta name="Description" content={page.metaDescription} />
@@ -87,8 +86,7 @@ export default function BlogPage({ page, newest, listing }) {
           }
         </ul>
       </BlogListing>
-
-    </div>
+    </main>
   );
 }
 
