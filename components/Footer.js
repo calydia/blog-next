@@ -93,7 +93,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="portfolio-icon"></span>
+          <span className="portfolio-icon" aria-hidden="true"></span>
           My portfolio
         </a>
         <div className="links">
