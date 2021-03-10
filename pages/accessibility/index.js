@@ -11,7 +11,7 @@ export default function BlogPage({ page, newest, listing }) {
   return (
     <div>
       <Head>
-        <title>Cats | Blog - Sanna Mäkinen</title>
+        <title>Accessibility | Blog - Sanna Mäkinen</title>
         <meta name="Description" content={page.metaDescription} />
         <meta
           property="og:description"
@@ -34,7 +34,7 @@ export default function BlogPage({ page, newest, listing }) {
           {newest.items.map((node, index) => {
                 return (
                   <li key={`list-item${index}`} className="blog-list-item newest-blog">
-                    <a key={index} className="post" href={`/cats/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
+                    <a key={index} className="post" href={`/accessibility/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
                       <Image
                         src={node.listingImage}
                         alt=""
@@ -61,7 +61,7 @@ export default function BlogPage({ page, newest, listing }) {
           {listing.items.map((node, index) => {
                 return (
                   <li key={`list-item${index}`} className="blog-list-item">
-                    <a key={index} className="post" href={`/cats/${node.slug}`} aria-labelledby={`blog-title${index}`}>
+                    <a key={index} className="post" href={`/accessibility/${node.slug}`} aria-labelledby={`blog-title${index}`}>
                       <Image
                         src={node.listingImage}
                         alt=""
@@ -95,8 +95,8 @@ export default function BlogPage({ page, newest, listing }) {
 export async function getStaticProps() {
   const page = await client.query({
     query: gql`
-      query GetBlogCatsListingPage {
-        page(id: 44) {
+      query GetBlogA11yListingPage {
+        page(id: 41) {
           title
           content
           metaDescription
@@ -107,8 +107,8 @@ export async function getStaticProps() {
 
   const newest = await client.query({
     query: gql`
-      query GetNewestCatsArticle {
-        articles(limit: 1, category: 2) {
+      query GetNewestA11yArticle {
+        articles(limit: 1, category: 5) {
           items {
             title
             slug
@@ -123,8 +123,8 @@ export async function getStaticProps() {
 
   const listing = await client.query({
     query: gql`
-      query GetOtherCatsArticles {
-        articles(limit: 100, category: 2, offset: 1) {
+      query GetOtherA11yArticles {
+        articles(limit: 100, category: 5, offset: 1) {
           items {
             title
             slug

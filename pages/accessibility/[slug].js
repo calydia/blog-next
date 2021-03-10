@@ -5,11 +5,25 @@ import Image from 'next/image';
 import BlogWrapper from '../../components/styles/BlogWrapper';
 import BlogMainContent from '../../components/styles/BlogMainContent';
 import BlogWriterContent from '../../components/styles/BlogWriterContent';
+import Head from 'next/head';
 
 export default function BlogPage({ post }) {
 
   return (
     <div>
+      <Head>
+        <title>{post.title} | Blog - Sanna Mäkinen</title>
+        <meta name="Description" content={post.metaDescription} />
+        <meta
+          property="og:description"
+          content={post.metaDescription}
+        />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en" />
+        <meta property="og:site_name" content="Blog - Sanna Mäkinen" />
+        <meta property="og:image" content={post.mainImage} />
+      </Head>
       <BlogWrapper>
         <div className="blog-main-image-wrapper">
           <Image
@@ -95,6 +109,7 @@ export async function getStaticProps({ params }) {
           published
           mainImage
           listingImage
+          metaDescription
         }
       }
       

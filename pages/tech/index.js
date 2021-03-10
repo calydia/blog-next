@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { client } from '../../lib/apollo';
+import Head from 'next/head';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import BlogListing from '../../components/styles/BlogListing';
@@ -9,6 +10,21 @@ import BlogCategoryContent from '../../components/styles/BlogCategoryContent';
 export default function BlogPage({ page, newest, listing }) {
   return (
     <div>
+      <Head>
+        <title>Tech | Blog - Sanna Mäkinen</title>
+        <meta name="Description" content={page.metaDescription} />
+        <meta
+          property="og:description"
+          content={page.metaDescription}
+        />
+        <meta property="og:title" content={ page.title } />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en" />
+        <meta property="og:site_name" content="Blog - Sanna Mäkinen" />
+        <meta property="og:image" content="https://blog.sanna.ninja/images/osiris.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </Head>
       <BlogCategoryContent>
         <h1 id="skip-target">{ page.title }</h1>
         <div dangerouslySetInnerHTML={{ __html: page.content }}></div>
@@ -81,6 +97,7 @@ export async function getStaticProps() {
         page(id: 45) {
           title
           content
+          metaDescription
         }
       }
     `

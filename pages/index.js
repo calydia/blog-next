@@ -24,68 +24,81 @@ export default function Home({ page, newest, listing }) {
     <div>
       <Head>
         <title>Welcome to my blog! | Blog - Sanna Mäkinen</title>
+        <meta name="Description" content={page.metaDescription} />
+        <meta
+          property="og:description"
+          content={page.metaDescription}
+        />
+        <meta property="og:title" content={ page.title } />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en" />
+        <meta property="og:site_name" content="Blog - Sanna Mäkinen" />
+        <meta property="og:image" content="https://blog.sanna.ninja/images/osiris.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
       </Head>
-
       <main>
         <FrontHeading id="skip-target">
-          { page.page.title }
+          { page.title }
         </FrontHeading>
         <div className="front-category-cats">
           <FrontBlogListing>
           <ul className="blog-category-articles">
-
-{newest.items.map((node, index) => {
-      return (
-        <li key={`list-item${index}`} className="blog-list-item newest-blog">
-          <a key={index} className="post" href={`/a11y/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
-            <Image
-              src={node.listingImage}
-              alt=""
-              width={1025}
-              height={600}
-              layout="responsive"
-            />
-            <div className="post-content">
-              <span id={`first-blog-title${index}`} className="blog-listing-title">
-                {node.title}
-              </span>
-              <span className="blog-info">
-                {dayjs(node.date)
-                  .format(`DD.MM.YYYY`)}{' '}
-                | {node.category}
-              </span>
-            </div>
-          </a>
-        </li>
-      );
-    })}
-
-{listing.items.map((node, index) => {
-      return (
-        <li key={`list-item${index}`} className="blog-list-item">
-          <a key={index} className="post" href={`/a11y/${node.slug}`} aria-labelledby={`blog-title${index}`}>
-            <Image
-              src={node.listingImage}
-              alt=""
-              width={1025}
-              height={600}
-              layout="responsive"
-            />
-            <div className="post-content">
-              <span id={`blog-title${index}`} className="blog-listing-title">
-                {node.title}
-              </span>
-              <span className="blog-info">
-                {dayjs(node.date)
-                  .format(`DD.MM.YYYY`)}{' '}
-                | {node.category}
-              </span>
-            </div>
-          </a>
-        </li>
-      );
-    })}
-</ul>
+            {newest.items.map((node, index) => {
+                  return (
+                    <li key={`list-item${index}`} className="blog-list-item newest-blog">
+                      <a key={index} className="post" href={`/${node.category.toLowerCase()}/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
+                        <Image
+                          src={node.listingImage}
+                          alt=""
+                          width={1025}
+                          height={600}
+                          layout="responsive"
+                        />
+                        <div className="post-content">
+                          <span id={`first-blog-title${index}`} className="blog-listing-title">
+                            {node.title}
+                          </span>
+                          <span className="blog-info">
+                            {dayjs(node.date)
+                              .format(`DD.MM.YYYY`)}{' '}
+                            | {node.category}
+                          </span>
+                        </div>
+                      </a>
+                    </li>
+                  );
+                }
+              )
+            }
+            {listing.items.map((node, index) => {
+                  return (
+                    <li key={`list-item${index}`} className="blog-list-item">
+                      <a key={index} className="post" href={`/${node.category.toLowerCase()}/${node.slug}`} aria-labelledby={`blog-title${index}`}>
+                        <Image
+                          src={node.listingImage}
+                          alt=""
+                          width={1025}
+                          height={600}
+                          layout="responsive"
+                        />
+                        <div className="post-content">
+                          <span id={`blog-title${index}`} className="blog-listing-title">
+                            {node.title}
+                          </span>
+                          <span className="blog-info">
+                            {dayjs(node.date)
+                              .format(`DD.MM.YYYY`)}{' '}
+                            | {node.category}
+                          </span>
+                        </div>
+                      </a>
+                    </li>
+                  );
+                }
+              )
+            }
+            </ul>
         </FrontBlogListing>
         </div>
       </main>
@@ -99,6 +112,7 @@ export async function getStaticProps() {
       query GetBlogFrontPage {
         page(id: 40) {
           title
+          metaDescription
         }
       }
     `
@@ -138,7 +152,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      page: result.data,
+      page: result.data.page,
       newest: newest.data.articles,
       listing: listing.data.articles
     }

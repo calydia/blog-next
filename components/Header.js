@@ -114,7 +114,7 @@ const Header = () => {
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink activeClassName="active" href="/a11y">
+            <ActiveLink activeClassName="active" href="/accessibility">
               <a>Accessibility</a>
             </ActiveLink>
           </li>
