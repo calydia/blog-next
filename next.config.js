@@ -1,6 +1,8 @@
+require('dotenv-flow').config();
+
 module.exports = {
   target: 'serverless',
   images: {
-    domains: ['blog-drupal.feisty.paw'],
+    domains: [process.env.FILES_DOMAIN],
   },
 };
