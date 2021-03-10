@@ -9,6 +9,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/globals.css';
 
+import Brightness2Icon from '@material-ui/icons/Brightness2';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -21,13 +24,35 @@ function MyApp({ Component, pageProps }) {
   }, [])
   
     
-  const ToggleButton = styled.button`
-    background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
+  const ToggleButtonDark = styled.button`
+    background: transparent;
+    border: none;
+    color: black; 
+    padding: 1em 1.5em;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    &:hover {
+      cursor: pointer;
+      outline: 1px solid ${({ theme }) => theme.linkColor};
+    }
+    &:focus {
+      outline: 5px dashed ${({ theme }) => theme.linkColor};
+      outline-offset: 5px;
+    }
+  `;
+
+  const ToggleButtonLight = styled.button`
+    background: transparent;
     border: none;
     color: white; 
     padding: 1em 1.5em;
+    position: absolute;
+    right: 0;
+    z-index: 2;
     &:hover {
       cursor: pointer;
+      outline: 1px solid ${({ theme }) => theme.linkColor};
     }
     &:focus {
       outline: 5px dashed ${({ theme }) => theme.linkColor};
@@ -44,7 +69,12 @@ function MyApp({ Component, pageProps }) {
           Skip to content
         </a>
       </Link>
-        <ToggleButton onClick={darkmode.toggle}>Switch color mode</ToggleButton>
+      <ToggleButtonDark className="dark-toggle" onClick={darkmode.enable} aria-label="Switch to dark mode" title="Switch to dark mode">
+        <Brightness2Icon aria-hidden="true" />
+      </ToggleButtonDark>
+      <ToggleButtonLight className="light-toggle" onClick={darkmode.disable} aria-label="Switch to light mode" title="Switch to light mode">
+        <WbSunnyIcon aria-hidden="true" />
+      </ToggleButtonLight>
         <Header />
           {isMounted && <Component {...pageProps} />}
         <Footer />

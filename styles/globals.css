@@ -73,6 +73,7 @@ a {
   margin: auto;
   padding: 0.7em;
   top: 2em;
+  z-index: 2;
 }
 
 body.dark-mode {
@@ -94,17 +95,19 @@ body.dark-mode .skip-link:focus {
 
 
 body.light-mode {
-  background: #d8eaf0;
-  background: linear-gradient(270deg, #8bcbe1, #d8eaf0);
-  background-size: 400% 400%;
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    -webkit-animation: BackgroundAnimation 30s ease infinite;
-    -moz-animation: BackgroundAnimation 30s ease infinite;
-    animation: BackgroundAnimation 30s ease infinite;
-  }
+  background-color: white;
 }
 body.light-mode .skip-link:focus { 
   background: white;
   color: #54007b;
+}
+
+body.light-mode .light-toggle {
+  display: none;
+  visibility: hidden;
+}
+
+body.dark-mode .dark-toggle {
+  display: none;
+  visibility: hidden;
 }

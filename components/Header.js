@@ -5,21 +5,29 @@ import ActiveLink from './ActiveLink'
 const Header = () => {
 
   const HeaderStyles = styled.header`
+    background: ${({ theme }) => theme.headerGradient};
+    padding: 2em 0;
+    position: relative;
     text-align: center;
   `;
 
   const LogoLink = styled.a`
     color: ${({ theme }) => theme.mainLink};
     display: inline-block;
+    position: relative;
     text-align: center;
+    text-shadow: ${({ theme }) => theme.headerTextShadow};
+    z-index: 2;
     &:hover {
       color: ${({ theme }) => theme.linkColor};
       cursor: pointer;
+      outline: 1px solid ${({ theme }) => theme.linkColor};
+      outline-offset: 15px;
       text-decoration: none;
     }
     &:focus {
-      color: ${({ theme }) => theme.linkColor};
-      outline: 5px dashed ${({ theme }) => theme.mainLink};
+      color: ${({ theme }) => theme.mainLink};
+      outline: 5px dashed ${({ theme }) => theme.linkColor};
       outline-offset: 15px;
     }
 
@@ -47,6 +55,8 @@ const Header = () => {
       margin-bottom: 0;
       margin-top: 2em;
       padding: 0;
+      position: relative;
+      z-index: 2;
     }
     li {
       margin: 0.8em;
@@ -55,6 +65,7 @@ const Header = () => {
       color: ${({ theme }) => theme.mainLink};
       font-size: 1.3rem;
       padding: 0.2em;
+      text-shadow: ${({ theme }) => theme.headerTextShadow};
     }
     a.active {
       color: ${({ theme }) => theme.linkColor};
@@ -65,8 +76,8 @@ const Header = () => {
       text-decoration: underline;
     }
     a:focus {
-      color: ${({ theme }) => theme.linkColor};
-      outline: 5px dashed ${({ theme }) => theme.mainLink};
+      color: ${({ theme }) => theme.mainLink};
+      outline: 5px dashed ${({ theme }) => theme.linkColor};
       outline-offset: 5px;
       text-decoration: underline;
     }
