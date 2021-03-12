@@ -119,3 +119,88 @@ body.dark-mode .dark-toggle {
   position: absolute;
   width: 1px;
 }
+
+/* TESTI */
+
+
+header {
+  padding: 5em 0 2em 0;
+  position: relative;
+  text-align: center;
+  @media only screen and (min-width: 500px) {
+    padding: 2em 0;
+  }
+}
+body.light-mode header {
+  background: linear-gradient(to right, #E6CAFC 0%, #BBC9F7 50%, #E6CAFC 100%);
+}
+body.dark-mode header {
+  background: linear-gradient(to right, #35035E 0%, #18399A 50%, #35035E 100%);
+}
+
+header > a {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+body.light-mode header > a {
+  color: black;
+  text-shadow: none;
+}
+body.dark-mode header > a {
+  color: white;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.46);
+}
+
+.blog-me {
+  display: block;
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.875rem;
+  line-height: 1;
+}
+.blog-name {
+  display: block;
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.125rem;
+  line-height: 1;
+  margin-top: 0.5em;
+}
+
+
+header nav ul {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    justify-content: center;
+    margin-bottom: 0;
+    margin-top: 2em;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+  }
+header nav li {
+    margin: 0.8em;
+  }
+header nav a {
+  font-size: 1.3rem;
+  padding: 0.2em;
+}
+header nav a.active {
+  text-decoration: underline;
+}
+body.light-mode header nav a {
+  color: black;
+  text-shadow: none;
+}
+body.dark-mode header nav a {
+  color: white;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.46);
+}
+body.light-mode header nav a.active {
+  color: #54007b;
+}
+body.dark-mode header nav a.active {
+  color: #ade5f8;
+}
