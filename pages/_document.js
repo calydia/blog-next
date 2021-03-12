@@ -41,7 +41,6 @@ class MyDocument extends Document {
           <link rel='icon' type='image/png' sizes='384x384' href='/favicons/android-chrome-384x384.png' />
           <link rel='icon' type='image/png' sizes='512x512' href='/favicons/icon-512x512.png' />
           <link rel='manifest' href='/manifest.json' />
-          <link rel="stylesheet" href="/globals.css" />
         </Head>
         <body>
           <Main />
