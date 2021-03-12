@@ -1,0 +1,206 @@
+html,
+body {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.3rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+@-webkit-keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes BackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  width: 1px;
+  height: 1px;
+  top: auto;
+}
+.skip-link:focus {
+  display: inline-block;
+  height: auto;
+  left: 0;
+  width: auto;
+  position: absolute;
+  margin: auto;
+  padding: 0.7em;
+  top: 2em;
+  z-index: 2;
+}
+
+body.dark-mode {
+  background: #010017;
+  background: linear-gradient(270deg, #010017, #01000f);
+  background-size: 400% 400%;
+  color: white;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    -webkit-animation: BackgroundAnimation 30s ease infinite;
+    -moz-animation: BackgroundAnimation 30s ease infinite;
+    animation: BackgroundAnimation 30s ease infinite;
+  }
+
+}
+body.dark-mode .skip-link:focus {
+  background: black;
+  color: white;
+}
+
+
+body.light-mode {
+  background-color: white;
+}
+body.light-mode .skip-link:focus {
+  background: white;
+  color: #54007b;
+}
+
+body.light-mode .light-toggle {
+  display: none;
+  visibility: hidden;
+}
+
+body.dark-mode .dark-toggle {
+  display: none;
+  visibility: hidden;
+}
+
+.visually-hidden {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+/* TESTI */
+
+
+header {
+  padding: 5em 0 2em 0;
+  position: relative;
+  text-align: center;
+  @media only screen and (min-width: 500px) {
+    padding: 2em 0;
+  }
+}
+body.light-mode header {
+  background: linear-gradient(to right, #E6CAFC 0%, #BBC9F7 50%, #E6CAFC 100%);
+}
+body.dark-mode header {
+  background: linear-gradient(to right, #35035E 0%, #18399A 50%, #35035E 100%);
+}
+
+header > a {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+body.light-mode header > a {
+  color: black;
+  text-shadow: none;
+}
+body.dark-mode header > a {
+  color: white;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.46);
+}
+
+.blog-me {
+  display: block;
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.875rem;
+  line-height: 1;
+}
+.blog-name {
+  display: block;
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.125rem;
+  line-height: 1;
+  margin-top: 0.5em;
+}
+
+
+header nav ul {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    justify-content: center;
+    margin-bottom: 0;
+    margin-top: 2em;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+  }
+header nav li {
+    margin: 0.8em;
+  }
+header nav a {
+  font-size: 1.3rem;
+  padding: 0.2em;
+}
+header nav a.active {
+  text-decoration: underline;
+}
+body.light-mode header nav a {
+  color: black;
+  text-shadow: none;
+}
+body.dark-mode header nav a {
+  color: white;
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.46);
+}
+body.light-mode header nav a.active {
+  color: #54007b;
+}
+body.dark-mode header nav a.active {
+  color: #ade5f8;
+}
