@@ -1,3 +1,16 @@
+# Requires the following to be added to CircleCI project environment:
+# DOCKERHUB_USERNAME username
+# DOCKERHUB_TOKEN token
+# IMAGE_NAME blog-next
+# DOCKERFILE_PATH deploy
+# BACKEND_URL https://backend.url/graphql
+# FILES_DOMAIN backend.url
+# KUBE_HOST https://kubernetes.api.url:6443
+# KUBE_BEARER_TOKEN eyJhbGciOiJSUzI1Ni....serviceaccount_token
+# KUBE_NAMESPACE blog-next
+# KUBE_DEPLOYMENT_NAME blog-next
+# KUBE_CONTAINER_NAME app
+
 version: 2
 jobs:
   deploy:
@@ -24,10 +37,10 @@ jobs:
             echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
             docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest
             docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${CIRCLE_BUILD_NUM}
-      #- run:
-      #    name: Deploy to Kubernetes
-      #    command: |
-      #      kubectl --server=${KUBE_HOST} --token=${KUBE_BEARER_TOKEN} --insecure-skip-tls-verify -n ${KUBE_NAMESPACE} set image deployment ${KUBE_DEPLOYMENT_NAME} ${KUBE_CONTAINER_NAME}=${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${CIRCLE_BUILD_NUM}
+      - run:
+          name: Deploy to Kubernetes
+          command: |
+            kubectl --server=${KUBE_HOST} --token=${KUBE_BEARER_TOKEN} --insecure-skip-tls-verify -n ${KUBE_NAMESPACE} set image deployment ${KUBE_DEPLOYMENT_NAME} ${KUBE_CONTAINER_NAME}=${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${CIRCLE_BUILD_NUM}
 
 workflows:
   version: 2

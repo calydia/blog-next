@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-next
+spec:
+  selector:
+    matchLabels:
+      app: blog-next
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: blog-next
+    spec:
+      containers:
+        - image: schala/blog-next
+          name: app
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100M
+            limits:
+              cpu: 1000m
+              memory: 2000M
