@@ -29,3 +29,15 @@ spec:
             limits:
               cpu: 1000m
               memory: 2000M
+          readinessProbe:
+            httpGet:
+              path: /life
+              port: 3000
+            initialDelaySeconds: 2
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /life
+              port: 3000
+            initialDelaySeconds: 2
+            periodSeconds: 3
