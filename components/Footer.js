@@ -60,7 +60,7 @@ const Footer = () => {
         width: 35px;
       }
     }
-    
+
     .twitter-link {
       border: 1px solid transparent;
       display: block;
@@ -114,7 +114,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <script src="/skip-content.js" type="text/javascript" />
+      <script src="/skip-content.js" />
     </FooterStyles>
   );
 };
