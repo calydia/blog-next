@@ -5,7 +5,7 @@ import Image from 'next/image';
 import BlogWrapper from '../../components/styles/BlogWrapper';
 import BlogMainContent from '../../components/styles/BlogMainContent';
 import BlogWriterContent from '../../components/styles/BlogWriterContent';
-
+import Head from 'next/head';
 
 export default function BlogPage({ post }) {
 
