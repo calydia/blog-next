@@ -1,7 +1,7 @@
 require('dotenv-flow').config();
 
 module.exports = {
-  target: 'serverless',
+  target: 'server',
   images: {
     domains: [process.env.FILES_DOMAIN],
   },
