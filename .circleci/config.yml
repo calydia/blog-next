@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.2
+      - run:
+          name: Install kubectl
+          command: |
+            apk add curl
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+            chmod +x ./kubectl
+            mv ./kubectl /usr/local/bin/kubectl
+      - run:
+          name: Build the image
+          command: |
+            docker build --build-arg BACKEND_URL=${BACKEND_URL} --build-arg FILES_DOMAIN=${FILES_DOMAIN} -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${CIRCLE_BUILD_NUM} -f ${DOCKERFILE_PATH}/Dockerfile .
+      - run:
+          name: Tag and push the image to Docker Hub
+          command: |
+            echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+            docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:latest
+            docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${CIRCLE_BUILD_NUM}
+      #- run:
+      #    name: Deploy to Kubernetes
+      #    command: |
+      #      kubectl --server=${KUBE_HOST} --token=${KUBE_BEARER_TOKEN} --insecure-skip-tls-verify -n ${KUBE_NAMESPACE} set image deployment ${KUBE_DEPLOYMENT_NAME} ${KUBE_CONTAINER_NAME}=${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${CIRCLE_BUILD_NUM}
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: main
