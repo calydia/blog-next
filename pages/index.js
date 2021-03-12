@@ -41,11 +41,12 @@ export default function Home({ page, newest, listing }) {
           { page.title }
         </FrontHeading>
         <FrontBlogListing>
-        <ul className="blog-category-articles">
+        <ul className="blog-category-articles" role="list">
           {newest.items.map((node, index) => {
                 return (
                   <li key={`list-item${index}`} className="blog-list-item newest-blog">
-                    <a key={index} className="post" href={`/${node.category.toLowerCase()}/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
+                    <a key={index} className="post" href={`/${node.category.toLowerCase()}/${node.slug}`}
+                      aria-label={`${node.title} on ${dayjs(node.date).format(`MMMM DD, YYYY`)} in category ${node.category}`}>
                       <Image
                         src={node.listingImage}
                         alt=""
@@ -53,14 +54,15 @@ export default function Home({ page, newest, listing }) {
                         height={600}
                         layout="responsive"
                       />
-                      <div className="post-content">
+                      <div className="post-content" aria-hidden="true">
                         <span id={`first-blog-title${index}`} className="blog-listing-title">
                           {node.title}
                         </span>
+                        <span className="visually-hidden">on</span>
                         <span className="blog-info">
-                          {dayjs(node.date)
-                            .format(`DD.MM.YYYY`)}{' '}
-                          | {node.category}
+                        {dayjs(node.date)
+                            .format(`MMMM DD, YYYY`)}{' '}
+                          | <span className="visually-hidden">in category</span> {node.category}
                         </span>
                       </div>
                     </a>
@@ -72,7 +74,8 @@ export default function Home({ page, newest, listing }) {
           {listing.items.map((node, index) => {
                 return (
                   <li key={`list-item${index}`} className="blog-list-item">
-                    <a key={index} className="post" href={`/${node.category.toLowerCase()}/${node.slug}`} aria-labelledby={`blog-title${index}`}>
+                    <a key={index} className="post" href={`/${node.category.toLowerCase()}/${node.slug}`}
+                    aria-label={`${node.title} on ${dayjs(node.date).format(`MMMM DD, YYYY`)} in category ${node.category}`}>
                       <Image
                         src={node.listingImage}
                         alt=""
@@ -80,14 +83,15 @@ export default function Home({ page, newest, listing }) {
                         height={600}
                         layout="responsive"
                       />
-                      <div className="post-content">
+                      <div className="post-content" aria-hidden="true">
                         <span id={`blog-title${index}`} className="blog-listing-title">
                           {node.title}
                         </span>
+                        <span className="visually-hidden">on</span>
                         <span className="blog-info">
                           {dayjs(node.date)
-                            .format(`DD.MM.YYYY`)}{' '}
-                          | {node.category}
+                            .format(`MMMM DD, YYYY`)}{' '}
+                          | <span className="visually-hidden">in category</span> {node.category}
                         </span>
                       </div>
                     </a>

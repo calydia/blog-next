@@ -37,8 +37,7 @@ export default function BlogPage({ post }) {
         <BlogMainContent>
           <h1 id="skip-target">{ post.title }</h1>
           <span className="blog-info">
-            {dayjs(post.date)
-              .format(`DD.MM.YYYY`)}{' '}
+            {dayjs(post.date).format(`MMMM DD, YYYY`)}{' '}
             | {post.category}
           </span>
           <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
@@ -110,7 +109,7 @@ export async function getStaticProps({ params }) {
           metaDescription
         }
       }
-      
+
     `,
     variables: { slug }
   });

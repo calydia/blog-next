@@ -35,7 +35,8 @@ export default function BlogPage({ page, newest, listing }) {
         {newest.items.map((node, index) => {
               return (
                 <li key={`list-item${index}`} className="blog-list-item newest-blog">
-                  <a key={index} className="post" href={`/tech/${node.slug}`} aria-labelledby={`first-blog-title${index}`}>
+                  <a key={index} className="post" href={`/tech/${node.slug}`} aria-labelledby={`first-blog-title${index}`}
+                  aria-label={`${node.title} on ${dayjs(node.date).format(`MMMM DD, YYYY`)} in category ${node.category}`}>
                     <Image
                       src={node.listingImage}
                       alt=""
@@ -43,14 +44,15 @@ export default function BlogPage({ page, newest, listing }) {
                       height={600}
                       layout="responsive"
                     />
-                    <div className="post-content">
+                    <div className="post-content" aria-hidden="true">
                       <span id={`first-blog-title${index}`} className="blog-listing-title">
                         {node.title}
                       </span>
+                      <span className="visually-hidden">on</span>
                       <span className="blog-info">
-                        {dayjs(node.date)
-                          .format(`DD.MM.YYYY`)}{' '}
-                        | {node.category}
+                      {dayjs(node.date)
+                          .format(`MMMM DD, YYYY`)}{' '}
+                        | <span className="visually-hidden">in category</span> {node.category}
                       </span>
                     </div>
                   </a>
@@ -61,7 +63,8 @@ export default function BlogPage({ page, newest, listing }) {
         {listing.items.map((node, index) => {
               return (
                 <li key={`list-item${index}`} className="blog-list-item">
-                  <a key={index} className="post" href={`/tech/${node.slug}`} aria-labelledby={`blog-title${index}`}>
+                  <a key={index} className="post" href={`/tech/${node.slug}`}
+                  aria-label={`${node.title} on ${dayjs(node.date).format(`MMMM DD, YYYY`)} in category ${node.category}`} >
                     <Image
                       src={node.listingImage}
                       alt=""
@@ -69,14 +72,15 @@ export default function BlogPage({ page, newest, listing }) {
                       height={600}
                       layout="responsive"
                     />
-                    <div className="post-content">
-                      <span id={`blog-title${index}`} className="blog-listing-title">
+                    <div className="post-content" aria-hidden="true">
+                      <span id={`first-blog-title${index}`} className="blog-listing-title">
                         {node.title}
                       </span>
+                      <span className="visually-hidden">on</span>
                       <span className="blog-info">
-                        {dayjs(node.date)
-                          .format(`DD.MM.YYYY`)}{' '}
-                        | {node.category}
+                      {dayjs(node.date)
+                          .format(`MMMM DD, YYYY`)}{' '}
+                        | <span className="visually-hidden">in category</span> {node.category}
                       </span>
                     </div>
                   </a>
