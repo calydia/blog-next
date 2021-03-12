@@ -6,9 +6,12 @@ const Header = () => {
 
   const HeaderStyles = styled.header`
     background: ${({ theme }) => theme.headerGradient};
-    padding: 2em 0;
+    padding: 5em 0 2em 0;
     position: relative;
     text-align: center;
+    @media only screen and (min-width: 500px) {
+      padding: 2em 0;
+    }
   `;
 
   const LogoLink = styled.a`

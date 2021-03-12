@@ -5,7 +5,7 @@ const BlogMainContent = styled.div`
   color: ${({ theme }) => theme.postText};
   font-size: 1.4rem;
   line-height: 1.5;
-  padding: 1.5em;
+  padding: 0.5em 1.5em;
   max-width: 1000px;
   width: 100%;
   @media only screen and (min-width: 1000px) {

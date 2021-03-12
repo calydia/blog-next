@@ -88,7 +88,7 @@ body.dark-mode {
   }
 
 }
-body.dark-mode .skip-link:focus { 
+body.dark-mode .skip-link:focus {
   background: black;
   color: white;
 }
@@ -97,7 +97,7 @@ body.dark-mode .skip-link:focus {
 body.light-mode {
   background-color: white;
 }
-body.light-mode .skip-link:focus { 
+body.light-mode .skip-link:focus {
   background: white;
   color: #54007b;
 }
@@ -110,4 +110,12 @@ body.light-mode .light-toggle {
 body.dark-mode .dark-toggle {
   display: none;
   visibility: hidden;
+}
+
+.visually-hidden {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
 }
