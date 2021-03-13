@@ -7,6 +7,7 @@ class MyDocument extends Document {
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
     const styleTags = sheet.getStyleElement();
     return { ...page, styleTags };
+  }
 
   render() {
     return (
